@@ -1,12 +1,19 @@
 {
-  "name": "tanstack-start-example-basic",
+  "name": "interactive-anatomy-atlas",
+  "version": "1.0.0",
+  "description": "An interactive anatomy atlas application for medical education",
+  "author": "Neonity2020",
   "private": true,
   "sideEffects": false,
   "type": "module",
+  "main": "electron/main.js",
   "scripts": {
     "dev": "vinxi dev",
     "build": "vinxi build",
-    "start": "vinxi start"
+    "start": "vinxi start",
+    "electron:dev": "concurrently \"npm run dev\" \"wait-on http://localhost:3000 && cross-env NODE_ENV=development electron .\"",
+    "electron:build": "npm run build && electron-builder",
+    "electron:start": "cross-env NODE_ENV=production electron ."
   },
   "dependencies": {
     "@emotion/react": "^11.14.0",
@@ -25,9 +32,34 @@
     "@types/react": "^19.0.8",
     "@types/react-dom": "^19.0.3",
     "autoprefixer": "^10.4.20",
+    "concurrently": "^8.2.2",
+    "cross-env": "^7.0.3",
+    "electron": "^28.1.0",
+    "electron-builder": "^24.9.1",
     "postcss": "^8.5.1",
     "tailwindcss": "^3.4.17",
     "typescript": "^5.7.2",
-    "vite-tsconfig-paths": "^5.1.4"
+    "vite-tsconfig-paths": "^5.1.4",
+    "wait-on": "^7.2.0"
+  },
+  "build": {
+    "appId": "com.interactive.anatomy.atlas",
+    "productName": "Interactive Anatomy Atlas",
+    "directories": {
+      "output": "release"
+    },
+    "files": [
+      "dist/**/*",
+      "electron/**/*"
+    ],
+    "win": {
+      "target": "nsis"
+    },
+    "mac": {
+      "target": "dmg"
+    },
+    "linux": {
+      "target": "AppImage"
+    }
   }
 }

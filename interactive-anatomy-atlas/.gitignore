@@ -20,3 +20,16 @@ yarn.lock
 /playwright-report/
 /blob-report/
 /playwright/.cache/
+
+# Electron build
+/release/
+/dist/
+/electron/build/
+*.exe
+*.dmg
+*.AppImage
+*.deb
+*.rpm
+*.zip
+*.tar.gz
+*.tar.xz
